@@ -14,6 +14,7 @@
 - hosts: localhost
   become: true
   roles:
+    - role: users
     - role: mysql
       mysql_vendor: mysql
       mysql_origin: upstream
@@ -36,6 +37,10 @@
           host: '%'
 
     - role: repo
+      openio_repository_no_log: false
+      openio_repository_products:
+        sds:
+          release: "18.10"
     - role: gridinit
       openio_gridinit_per_ns: true
       openio_gridinit_namespace: TRAVIS
